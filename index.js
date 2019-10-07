@@ -1,6 +1,6 @@
 'use strict'
 
-const m = require('mithril/hyperscript')
+import m from 'mithril';
 
 const VOID_TAGS = [
   'area',
@@ -73,7 +73,7 @@ function omit (source, keys) {
 const copy = omit
 
 // shameless stolen from https://github.com/punkave/sanitize-html
-function escapeHtml (s, replaceDoubleQuote) {
+export function escapeHtml (s, replaceDoubleQuote) {
   if (s === 'undefined') {
     s = ''
   }
@@ -167,7 +167,7 @@ async function createChildrenContent (view, options, hooks) {
   return _render(view.children, options, hooks)
 }
 
-async function render (view, attrs, options) {
+export async function render (view, attrs, options) {
   options = options || {}
   if (view.view || isFunction(view)) {
     // root component
@@ -278,6 +278,3 @@ async function _render (view, options, hooks) {
     '>'
   ].join('')
 }
-
-module.exports = render
-module.exports.escapeHtml = escapeHtml
